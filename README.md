@@ -24,6 +24,9 @@ didaftarkan disimpan di dalam file "./users/user.txt" dan juga membuat sistem lo
 yang dibuat di script "main.sh".
 </h3>
 <br/>
+sistem register dibuat lalu untuk mengecek berhasil didaftarkan dengan memanggil method cek_nama
+if( cek_nama($name,$con) == 0 )
+<br/>
 
 <h3>
 <strong>1 b.)</strong><a name = "1b"></a> membuat konfigurasi password agar keamanan terjaga dengan syarat:<br/>
@@ -34,11 +37,61 @@ iV. Tidak boleh sama dengan username
 </h3>
 <br/>
 
+dibuat dengan codingan sebagai berikut:
+
+   <p id = "letter" class = "invalid"> Huruf <b> kecil </b> </p>
+   <p id = "capital" class = "invalid"> Huruf <b> KAPITAL (huruf besar) </b> </p>
+   <p id = "number" class = "invalid"> <b>Angka</b>(0-9) </p>
+   <p id = "length" class = "invalid"> Minimal <b> 8 karakter </b> </p>
+    
+    <script>
+    var myInput = document.getElementById("psw");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+<br/>
+
 <h3>
 <strong>1 c.)</strong><a name = "1c"></a> membuat sistem register pada script register.sh dan setiap user yang berhasil
 didaftarkan disimpan di dalam file "./users/user.txt" dan juga membuat sistem login
 yang dibuat di script "main.sh".
 </h3>
+<br/>
+        cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
+        if(!empty(trim($name)) && !empty(trim($username)) && !empty(trim($email)) && !empty(trim($password)) && !empty(trim($repass))){
+            mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
+            if($password == $repass){
+                memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
+                if( cek_nama($name,$con) == 0 ){
+                    hashing password sebelum disimpan didatabase
+                    $pass  = password_hash($password, PASSWORD_DEFAULT);
+                    insert data ke database
+                    $query = "INSERT INTO users (username,name,email, password ) VALUES ('$username','$nama','$email','$pass')";
+                    $result   = mysql_query($con, $query);
+                    jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
+                    if ($result) {
+                        $_SESSION['username'] = $username;
+                       
+                        header('Location: index.php');
+                    
+                    
+                    } else {
+                        $error =  'User Already Exist';
+                    }
+                }else{
+                        $error =  'Failed Login Attempt on User' '$name';
+                }
+            }else{
+                $validate = 'Wrong Password';
+            }
+            
+        }else {
+            $error =  'Data cant be empty';
+        }then{
+            $validate = 'User $name registered successfully!';        }
+    } 
 <br/>
 
 <h3>
@@ -47,6 +100,40 @@ didaftarkan disimpan di dalam file "./users/user.txt" dan juga membuat sistem lo
 yang dibuat di script "main.sh".
 </h3>
 <br/>
+cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
+        if(!empty(trim($name)) && !empty(trim($username)) && !empty(trim($email)) && !empty(trim($password)) && !empty(trim($repass))){
+            mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
+            if($password == $repass){
+                memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
+                if( cek_nama($name,$con) == 0 ){
+                    hashing password sebelum disimpan didatabase
+                    $pass  = password_hash($password, PASSWORD_DEFAULT);
+                    insert data ke database
+                    $query = "INSERT INTO users (username,name,email, password ) VALUES ('$username','$nama','$email','$pass')";
+                    $result   = mysql_query($con, $query);
+                    jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
+                    if ($result) {
+                        $_SESSION['username'] = $username;
+                       
+                        header('Location: index.php');
+                    
+                    
+                    } else {
+                        $error =  'User Already Exist';
+                    }
+                }else{
+                        $error =  'Failed Login Attempt on User' '$name';
+                }
+            }else{
+                $validate = 'Wrong Password';
+            }
+            
+        }else {
+            $error =  'Data cant be empty';
+        }then{
+            $validate = 'User $name registered successfully!';        }
+    } 
+<br/>
 
 <h3>
 <strong>1 e.)</strong><a name = "1e"></a> membuat sistem register pada script register.sh dan setiap user yang berhasil
@@ -54,11 +141,40 @@ didaftarkan disimpan di dalam file "./users/user.txt" dan juga membuat sistem lo
 yang dibuat di script "main.sh".
 </h3>
 <br/>
-
-<h2>Jawaban no. 1</h2>
-<p>
-Menyertakan file program pada register lalu dilakukan inisialisasi session. Kemudian dicek apakah data username yang diinputkan user kosong atau tidak. setelah itu menghilangkan backshlases. cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak. kemudian mengecek apakah password yang diinputkan sama dengan repassword yang diinputkan kembali. mengecek apakah user sudah terdaftar atau belum dengan memanggil method. hashing password sebelum disimpan di database. lalu insert data ke database.
-</p>
+cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
+        if(!empty(trim($name)) && !empty(trim($username)) && !empty(trim($email)) && !empty(trim($password)) && !empty(trim($repass))){
+            mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
+            if($password == $repass){
+                memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
+                if( cek_nama($name,$con) == 0 ){
+                    hashing password sebelum disimpan didatabase
+                    $pass  = password_hash($password, PASSWORD_DEFAULT);
+                    insert data ke database
+                    $query = "INSERT INTO users (username,name,email, password ) VALUES ('$username','$nama','$email','$pass')";
+                    $result   = mysql_query($con, $query);
+                    jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
+                    if ($result) {
+                        $_SESSION['username'] = $username;
+                       
+                        header('Location: index.php');
+                    
+                    
+                    } else {
+                        $error =  'User Already Exist';
+                    }
+                }else{
+                        $error =  'Failed Login Attempt on User' '$name';
+                }
+            }else{
+                $validate = 'Wrong Password';
+            }
+            
+        }else {
+            $error =  'Data cant be empty';
+        }then{
+            $validate = 'User $name registered successfully!';        }
+    } 
+<br/>
 
 ## No. 2 <a name = "2"></a>
 
